@@ -22,7 +22,7 @@ A deployment tool inspired by and is using [Rye][1].
 
 ### Dragify
 
-      Dragify version #{Dragon::VERSION}
+      Dragify version 0.1.0
 
       -h     print this usage doc
       -v     print version
