@@ -1,0 +1,33 @@
+default: &default
+   # main settings [REQUIRED]
+   # Note, "local_upload_dir" overrides the use of GIT to deploy
+   # local_upload_dir: "/Users/isheridan/Documents/personalspace/dragon/files"
+   git_url: "git@github.com:USERNAME/repo.git"
+   destination_root: "/app/root/path/on/remote/server"
+   destination_symlink: "/app/root/path/on/remote/server/current" # web server points to this
+   servers:
+      - "server1.example.com"
+      - "server2.example.com"
+   servers_username: "username"
+   servers_key_location: "~/.ssh/example.pem"
+   # sample commands [OPTIONAL]
+   # uncomment this setting if you do not want the default commands to run
+   # commands_run_default: no
+   commands:
+      cd: "{{release_dir}}/ && pwd"
+      rm: "-rf {{release_dir}}/log"
+      ls: "-nfs {{destination_root}}/shared/log {{release_dir}}"
+
+staging:
+   <<: *default
+   git_branch: "staging"
+
+production:
+   <<: *default
+   git_branch: "production"
+   servers:
+      - "prodserver1.example.com"
+      - "prodserver2.example.com"
+      - "prodserver3.example.com"
+      - "prodserver4.example.com"
+      - "prodserver5.example.com"

@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require 'erb'
+
+
+$:.unshift File.expand_path('../../lib', __FILE__)
+require 'dragon/usage'
+require 'dragon/version'
+
+if $*.empty? || $*[0] == '-h'
+  puts Dragon.depify_usage
+  exit 0
+end
+if $*[0] == '-v'
+  puts Dragon::VERSION
+  exit 0
+end
+
+class Dragify
+
+   def initialize(root_given)
+      @root = root_given
+   end
+
+   def get_binding
+      binding
+   end
+
+end
+
+erb_templates_loc = File.expand_path('../../resources/templates', __FILE__)
+template_string = File.join( erb_templates_loc, "dragfile.yaml.erb" )
+template = ERB.new( File.read( template_string ) )
+
+controller = Dragify.new( Dir.pwd )
+
+# render and save Derfile
+file = File.open("Dragfile","w")
+file.write( template.result(controller.get_binding) )
+file.close
+
+puts "Dragfile created in #{ Dir.pwd }"
