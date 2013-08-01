@@ -29,7 +29,7 @@ A deployment tool inspired by and is using [Rye][1].
 
       Deploy:
 
-        dragify [location_to_depify]
+        dragify [location_to_dragify]
 
       Example
 

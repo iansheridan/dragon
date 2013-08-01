@@ -28,7 +28,7 @@ Dragify version #{Dragon::VERSION}
 
 Deploy:
 
-  dragify [location_to_depify]
+  dragify [location_to_dragify]
 
 Example
 
