@@ -1,26 +1,26 @@
 #!/usr/bin/env ruby
 
 $:.unshift File.expand_path('../../lib', __FILE__)
-require 'deployer'
-require 'deployer/usage'
-require 'deployer/options'
+require 'dragon'
+require 'dragon/usage'
+require 'dragon/options'
 
 if $*.empty? || $*[0] == '-h'
-  puts Deployer.usage
+  puts Dragon.usage
   exit 0
 end
 if $*[0] == '-v'
-  puts Deployer::VERSION
+  puts Dragon::VERSION
   exit 0
 end
 
 begin
-   options = Deployer::Options.parse( Dir.pwd, $* )
-rescue Deployer::Exceptions::DepfileMissing => e
+   options = Dragon::Options.parse( Dir.pwd, $* )
+rescue Dragon::Exceptions::DepfileMissing => e
    puts e.message
    exit 0
 end
-Deployer::Deploy.new(options).run
+Dragon::Deploy.new(options).run
 
 puts
 puts "Done!"
