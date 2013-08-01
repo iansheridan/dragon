@@ -35,6 +35,13 @@ A deployment tool inspired by and is using [Rye][1].
 
         dragify .
 
+## Contributing
+
+ - Fork the project.
+ - Make your feature addition or bug fix, write tests.
+ - Commit, do not mess with rakefile, version, or history.
+ - Make a pull request.
+
 ----
 
 ## Copyright
