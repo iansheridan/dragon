@@ -10,15 +10,15 @@ module Dragon
       def default_commands sequence
          return {} if @options.local_settings.has_key?( "commands_run_default" )
          {
-            use_git: {
-               git: "clone --depth=1 --branch=#{ @options.environment } #{ @options.local_settings["git_url"] } #{ @options.release }",
-            },
-            local_upload: {
+            use_git: [{
+               git: "clone --depth=1 --branch=#{ @options.local_settings["git_branch"] } #{ @options.local_settings["git_url"] } #{ @options.release_dir }",
+            }],
+            local_upload: [{
                dir_upload: "#{ @options.local_settings["local_upload_dir"] }",
-            },
-            current_linking: {
+            }],
+            current_linking: [{
                ln: "-nfs #{ @options.release_dir } #{ @options.local_settings["destination_symlink"] }",
-            }
+            }]
          }[sequence]
       end
 

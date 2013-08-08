@@ -37,9 +37,9 @@ module Dragon
 
     def update_commands
       return nil unless !@local_settings.nil? && @local_settings.has_key?( "commands" )
-      @local_settings['commands'].each{|k,v|
-        rendered_value = Liquid::Template.parse( v ).render( command_liquid_args )
-        @local_settings['commands'][k] = rendered_value
+      @local_settings['commands'].each_with_index{|command,i|
+        rendered_value = Liquid::Template.parse( @local_settings['commands'][ i ][ command.keys[0] ] ).render( command_liquid_args )
+        @local_settings['commands'][ i ][ command.keys[0] ] = rendered_value
       }
     end
 

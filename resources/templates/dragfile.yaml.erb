@@ -14,9 +14,9 @@ default: &default
    # uncomment this setting if you do not want the default commands to run
    # commands_run_default: no
    commands:
-      cd: "{{release_dir}}/ && pwd"
-      rm: "-rf {{release_dir}}/log"
-      ls: "-nfs {{destination_root}}/shared/log {{release_dir}}"
+      - cd: "{{release_dir}}/ && pwd"
+      - rm: "-rf {{release_dir}}/log"
+      - ls: "-nfs {{destination_root}}/shared/log {{release_dir}}"
 
 staging:
    <<: *default

@@ -6,12 +6,14 @@ module Dragon
       end
 
       def run commands
-         commands.each{|k,v|
-            puts "runnning: #{ k } #{ v }"
-            unless v.empty?
-               ran = @boxes.send( k.to_sym, v )
+         commands.each{|c,i|
+            name = c.keys[0]
+            args = c[name]
+            puts "runnning: #{ name } #{ args }"
+            unless args.empty?
+               ran = @boxes.send( name.to_sym, args )
             else
-               ran = @boxes.send( k.to_sym )
+               ran = @boxes.send( name.to_sym )
             end
             puts "     output: #{ ran.stdout }" if ran.respond_to? :stdout
          }
